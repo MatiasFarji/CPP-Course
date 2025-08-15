@@ -101,11 +101,13 @@ int main()
 
     char user_selection{'l'};
     char user_allowed_selections[]{'f', 'n', 'p', 'a', 'l', 'q'};
+    
     do
     {
         display_menu();
 
         std::cin >> user_selection;
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // solo una vez
 
         switch (std::tolower(user_selection)) {
             case 'f':
@@ -145,16 +147,13 @@ int main()
                 std::cout << "Adding and playing new song" << std::endl;
                 std::string song_name{};
                 std::cout << "Enter song name: ";
-                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-                std::cin >> song_name;
+                std::getline(std::cin, song_name);
 
 
                 std::string song_artist{};
                 std::cout << "Enter song artist: ";
-                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-                std::cin >> song_artist;
+                std::getline(std::cin, song_artist);
 
-                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
                 int rating{1};
                 do {
                     std::cout << "Enter your rating (1-5): ";
